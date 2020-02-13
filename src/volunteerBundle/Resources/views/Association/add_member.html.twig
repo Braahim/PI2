@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block add_member %}
+
+    <div class="page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}); transform: translate3d(0px, 76.3333px, 0px); height: 300px;" ></div>
+    <div class="main main-raised" style="margin-bottom: 30px;">
+
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <h2 class="text-center title">Add member</h2>
+                <form class="contact-form" name="volunteerbundle_member" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group" >
+                                <label class="bmd-label-floating" for="volunteerbundle_member_nom" class="required"> First Name</label>
+                                <input type="text" id="volunteerbundle_member_nom" name="volunteerbundle_member[nom]" required="required" maxlength="255" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group" >
+                                <label class="bmd-label-floating" for="volunteerbundle_member_prenom" class="required"> Last Name</label>
+                                <input type="text" id="volunteerbundle_member_prenom" name="volunteerbundle_member[prenom]" required="required" maxlength="255" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group" style="margin-top: 15px;" >
+                                <label class="bmd-label-floating" for="volunteerbundle_member_mail" class="required"> Mail</label>
+                                <input type="text" id="volunteerbundle_member_mail" name="volunteerbundle_member[mail]" required="required" maxlength="255" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group bmd-form-group" >
+                                <label class="bmd-label-floating" for="volunteerbundle_member_association" class="required"> </label>
+                                <select class="form-control selectpicker" data-style="btn btn-link" id="volunteerbundle_member_association" name="volunteerbundle_member[association]"><option value="1">Croissant rouge</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 ml-auto mr-auto text-center">
+                            <button class="btn btn-primary btn-raised" type="submit" id="volunteerbundle_member_OK" name="volunteerbundle_member[OK]">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="volunteerbundle_member__token" name="volunteerbundle_member[_token]" value="LPf4dBAG2Kt_iDXC6gaw5pRQcXEXJGyymUbmy37I-VM">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

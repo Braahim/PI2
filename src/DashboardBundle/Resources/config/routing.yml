@@ -1,0 +1,7 @@
+dashboard_homepage:
+    path:     /
+    defaults: { _controller: DashboardBundle:Dashboard:dashboard }
+
+dashboard_gestion_association_page:
+  path:     /gestion_association
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_association:read_association }

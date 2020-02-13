@@ -1,0 +1,22 @@
+refugee:
+    resource: "@RefugeeBundle/Resources/config/routing.yml"
+    prefix:   /refugee
+
+dashboard:
+    resource: "@DashboardBundle/Resources/config/routing.yml"
+    prefix:   /dashboard
+
+volunteer:
+    resource: "@volunteerBundle/Resources/config/routing.yml"
+    prefix:   /volunteer
+
+home:
+    resource: "@HomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

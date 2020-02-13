@@ -1,0 +1,35 @@
+refugee_homepage:
+    path:     /
+    defaults: { _controller: RefugeeBundle:refugee:index }
+
+refugee_ajoutRefugie:
+    path:     /ajoutR
+    defaults: { _controller: RefugeeBundle:refugie:ajoutRefugie }
+
+refugee_afficherDetaille:
+    path:     /afficherD/{id}
+    defaults: { _controller: RefugeeBundle:refugie:afficherDetaille }
+
+refugee_afficherRefugee:
+    path:     /afficherR
+    defaults: { _controller: RefugeeBundle:refugie:afficherRefugee }
+
+refugee_modifierRefugie:
+    path:     /modifierR/{id}
+    defaults: { _controller: RefugeeBundle:refugie:modifierRefugie }
+
+refugee_supprimerRefugie:
+        path:     /supprimerR/{id}
+        defaults: { _controller: RefugeeBundle:refugie:supprimerRefugie }
+refugee_ajoutCamp:
+        path:     /ajoutC
+        defaults: { _controller: RefugeeBundle:camp:ajoutCamp }
+refugee_afficherCamp:
+    path:     /ajoutC
+    defaults: { _controller: RefugeeBundle:camp:afficherCamp}
+
+refugee_suprimerC:
+    path:     /supprimerC/{id}
+    defaults: { _controller: RefugeeBundle:camp:supprimerC}
+
+

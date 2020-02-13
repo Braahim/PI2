@@ -1,0 +1,49 @@
+{% extends'base.html.twig' %}
+
+{% block ajoutRefugee %}
+
+    <div class="new-style page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}) ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="brand text-center">
+                        <h2 class="card-title text-center">Add Refugee</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="col-md-12">
+
+            <div class="card" >
+
+                <div class="card-body color">
+
+                    <h2 class="card-title text-center">Add Refugee</h2>
+
+                        {{ form_start(form) }}
+                        {{ form_widget(form.prenom) }}
+                        {{ form_widget(form.nom) }}
+                        {{ form_widget(form.nationality) }}
+                        {{ form_widget(form.sexe) }}
+                        {{ form_widget(form.birthD) }}
+                        {{ form_widget(form.birthLoc) }}
+                        {{ form_widget(form.socialSit) }}
+                        {{ form_widget(form.img) }}
+                        {{ form_widget(form.camp) }}
+                         {{ form_row(form._token)  }}
+                        {{ form_end(form) }}
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

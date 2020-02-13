@@ -1,0 +1,189 @@
+{% extends'base.html.twig' %}
+
+{% block ajoutCamp %}
+    <div class="new-style page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}) ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="brand text-center">
+                        <h2 class="card-title text-center">Add Refugee</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+      <div class="row">
+        <div class="col-md-4">
+
+            <div class="card" >
+
+                <div class="card-body color">
+
+
+                    <div class="card card-nav-tabs">
+                        <div class="card-header card-header-primary">
+                            <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#profile" data-toggle="tab">
+                                                <i class="material-icons">face</i>
+                                                Ajouter Camp
+                                                <div class="ripple-container"></div></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#settings" data-toggle="tab">
+                                                <i class="material-icons">build</i>
+                                                Modifier
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body ">
+                            <div class="tab-content text-center">
+                                <div class="tab-pane" id="profile">
+                                    <h2 class="card-title text-center">Ajout Camp</h2>
+                                    {{ form_start(form) }}
+
+
+
+
+
+
+
+                                    <div class="form-group bmd-form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                  <span class="input-group-text">
+                                                    <i class="material-icons">face</i>
+                                                  </span>
+                                            </div>
+                                            {{ form_row(form.libelle, {'attr': {'class' : 'form-control'}}) }}
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                  <span class="input-group-text">
+                                                    <i class="material-icons">face</i>
+                                                  </span>
+                                            </div>
+                                            {{ form_row(form.location, {'attr': {'class' : 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group bmd-form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                      <span class="input-group-text">
+                                                        <i class="material-icons">place</i>
+                                                      </span>
+                                            </div>
+
+                                            {{ form_row(form.capacity, {'attr': {'class' : 'form-control'}}) }}
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div align="center">
+
+                                        {{ form_end(form) }}
+                                    </div>
+                                </div>
+                                <div class="tab-pane active show" id="messages">
+                                    <p> I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at.</p>
+                                </div>
+                                <div class="tab-pane" id="settings">
+                                    <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-7">
+
+            <div class="card" >
+
+                <div class="card-body color">
+
+                     <h2 class="card-title text-center">Gestion Camp</h2>
+                    <table class="table">
+                        <thead>
+                        <tr>
+
+                            <th>Camp Nom</th>
+                            <th>Governorat</th>
+                            <th>Capacité</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for c in camp %}
+                        <tr>
+                            <td class="text-center"> {{ c.libelle }}</td>
+                            <td>{{ c.location }}</td>
+                            <td class="text-right">{{ c.capacity }}</td>
+                            <td class="td-actions text-right">
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="material-icons">edit</i></button>
+
+                                <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+....
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="{{ path('refugee_suprimerC',{'id':c.id}) }}">
+                                <button type="button" rel="tooltip" class="btn btn-danger">
+                                    <i class="material-icons">close</i>
+                                </button>
+                                </a>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+      </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

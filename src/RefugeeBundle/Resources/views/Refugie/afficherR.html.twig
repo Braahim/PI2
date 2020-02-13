@@ -1,0 +1,103 @@
+{% extends'base.html.twig' %}
+
+{% block afficherR %}
+    <div class="new-style page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}) ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto">
+                    <div class="brand text-center">
+                        <h2 class="card-title text-center">Liste des réfugiés</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+            <div class="col-md-12">
+                <div class="container">
+                <div class="card" >
+
+                    <div class="card-body color">
+
+                        <h2 class="card-title text-center">Add Refugee</h2>
+                        <div class="table-responsive">
+                            <table class="table table-shopping">
+                                <thead>
+                                <tr>
+                                    <th class="text-center"></th>
+                                    <th></th>
+                                    <th class="th-description">Date et lieu de Naissance</th>
+                                    <th class="th-description">Gender</th>
+                                    <th class="text-right">Social Situation</th>
+                                    <th class="text-right">Camp</th>
+                                    <th class="text-right"></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for r in refugee %}
+                                <tr>
+                                    <td>
+                                        <div class="img-container">
+                                            <img src="{{ asset('asset/myimg/' ~r.img ) }}" alt="...">
+                                        </div>
+                                    </td>
+                                    <td class="td-name">
+                                        <a href="">{{ r.nom }} {{ r.prenom }}</a>
+                                        <br><small>{{ r.nationality}}</small>
+                                    </td>
+                                    <td>
+                                        {{ r.birthD | date('m/d/Y') }}   à   {{ r.birthLoc }}
+                                    </td>
+                                    <td>
+                                        {% if r.sexe == 'F' %}
+                                            Femme
+                                        {% elseif r.sexe == 'H' %}
+                                            Homme
+                                            {% else %}
+                                            Autre
+                                            {% endif %}
+
+                                    </td>
+                                    <td class="td-number">
+                                   {{ r.socialSit }}
+                                    </td>
+                                    <td class="td-number">
+
+                                        {{ r.camp.libelle }}
+
+                                    </td>
+                                    <td class="td-number">
+                                        <a href = "{{ path('refugee_modifierRefugie',{'id':r.id}) }}" >
+                                            <button type="button" rel="tooltip" class="btn btn-success btn-round" title="Modifier ">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                        </a>
+                                        <a href = "{{ path('refugee_supprimerRefugie',{'id':r.id}) }}" >
+                                            <button type="button" rel="tooltip" class="btn btn-danger btn-round" title="Supprimer" onclick="myFucntion({{ r.id }});">
+
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                </div>
+
+
+{% endblock %}
