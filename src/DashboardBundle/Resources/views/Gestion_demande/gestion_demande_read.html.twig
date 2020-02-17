@@ -1,0 +1,61 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block gestion_demande %}
+    <div class="content">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">table_chart</i>
+                    </div>
+                    <h4 class="card-title">Demandes De Dons <a href="{{ path('ajouterDemande') }}"><button type="button" class="btn btn-info btn-round" style="margin-left: 35px;">Ajouter Une Demande <i class="material-icons">keyboard_arrow_right</i></button></a></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive table-sales">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-left">N° Demand</th>
+                                        <th class="text-left">Titre</th>
+                                        <th>Description</th>
+                                        <th>Montant</th>
+                                        <th class="text-left">Délai Final</th>
+                                        <th class="td-actions">Modifier </th>
+                                        <th class="td-actions">Supprimer </th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for demande in demande %}
+                                        <tr>
+                                        <td>{{ demande.idDemande }}</td>
+                                        <td class="text-left">{{ demande.titreDem }}</td>
+                                        <td class="text-left">{{ demande.descDem }}</td>
+                                        <td class="text-left">{{ demande.montantDem }}</td>
+                                        <td class="text-left">{{ demande.delaiFinal|date("d/m/y") }}</td>
+                                            <td class="td-actions">
+                                                <a href="{{path('modifierDem',{'idDemande':demande.idDemande})}}"><button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="" style="width: 60px;">
+                                                        <i class="material-icons">edit</i>
+                                                    </button></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{path('supprimerDem',{'idDemande':demande.idDemande})}}"><button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" style="width: 60px;">
+                                                        <i class="material-icons">close</i>
+                                                    </button></a>
+                                            </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block gestion_medecin %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="width: 600px;height: 500px; margin-left: 240px;margin-top: 20px;">
+                <div class="card-header card-header-raised card-header-primary text-center">
+                    <h4 class="card-title" >Medecin</h4>
+                </div>
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">n ° CIN</label>
+
+                                {{ form_widget(form.nCIN, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+
+                            <br>
+                                <label class="bmd-label-floating" style="width: 120px;">nom Medecin</label>
+
+                                {{ form_widget(form.nonMedecin, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                                <br>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+
+                            <label class="bmd-label-floating" style="width: 120px;">prenom Medecin</label>
+
+                                {{ form_widget(form.prenomMedecin, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                                <br>
+                            </div>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+
+                            <label class="bmd-label-floating" style="width: 120px;">telephone</label>
+
+                                {{ form_widget(form.telephone, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                                <br>
+                            </div>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+
+
+                            <br>
+
+                                {{ form_widget(form.specialite, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

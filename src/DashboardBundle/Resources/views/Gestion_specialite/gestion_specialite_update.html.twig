@@ -1,0 +1,34 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block ajout_specialite %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="width: 600px;height: 200px; margin-left: 240px;margin-top: 165px;">
+                <div class="card-header card-header-raised card-header-primary text-center">
+                    <h4 class="card-title" >Spécialité </h4>
+                </div>
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Nom spécialité</label>
+
+                                {{ form_widget(form.nomSpecialite, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

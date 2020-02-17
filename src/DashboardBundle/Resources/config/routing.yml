@@ -1,0 +1,55 @@
+dashboard_homepage:
+    path:     /
+    defaults: { _controller: DashboardBundle:Dashboard:dashboard }
+
+dashboard_gestion_association_page:
+  path:     /gestion_association
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_association:read_association }
+
+dashboard_gestion_demande_page:
+  path:     /gestion_demande
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_demande:afficheDemande }
+
+modifierDem:
+  path:     /modifierDem/{idDemande}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_demande:modifierDem }
+
+supprimerDem:
+  path:     /supprimerDem/{idDemande}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_demande:supprimerDem }
+
+ajouterDemande:
+  path:     /ajouterDemande
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_demande:ajouterDemande }
+
+dashboard_gestion_specialite_page:
+  path:     /gestion_specialite
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:afficheSpecialite }
+
+supprimerSpec:
+  path:     /supprimerSpec/{id}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:supprimerSpec }
+
+ajouterSpecialite:
+  path:     /ajouterSpecialite
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:ajouterSpecialite }
+
+modifierSpec:
+  path:     /modifierSpec/{id}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:modifierSpec }
+
+
+dashboard_gestion_medecin_page:
+    path:     /gestion_medecin
+    defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:afficherMedecin }
+
+supprimerMedecin:
+      path:     /supprimerMedecin/{id}
+      defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:supprimerMedecin }
+
+ajouterMedecin:
+        path:     /ajouterMedecin
+        defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:ajouterMedecin }
+modifierMedecin:
+  path:     /modifierMedecin/{id}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:modifierMedecin }

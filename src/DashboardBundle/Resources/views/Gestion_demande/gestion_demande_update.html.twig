@@ -1,0 +1,57 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block ajout_demande %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="width: 600px;height: 450px; margin-left: 240px;">
+                <div class="card-header card-header-raised card-header-primary text-center">
+                    <h4 class="card-title" >Demand <img style="height: 40px;width: 40px;" src={{ asset('assets/img/demande.ico')}} ></h4>
+                </div>
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Title</label>
+
+                                {{ form_widget(form.titreDem, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Description</label>
+                                {{ form_widget(form.descDem, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Amount Wanted</label>
+                                {{ form_widget(form.montantDem, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                                <span class="material-input"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group label-floating is-empty bmd-form-group">
+                        <label class="bmd-label-floating" >Date Limit</label><br>
+                        {{ form_widget(form.delaiFinal, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                        <span class="material-input"></span>
+                    </div><br>
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

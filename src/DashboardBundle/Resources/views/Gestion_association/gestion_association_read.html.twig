@@ -1,0 +1,56 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block gestion_association %}
+    <div class="content">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">table_chart</i>
+                    </div>
+                    <h4 class="card-title">Associations</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive table-sales">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-left">logo</th>
+                                        <th class="text-left">Id</th>
+                                        <th>Nom</th>
+                                        <th>Mail</th>
+                                        <th class="text-left">adresse</th>
+                                        <th class="text-left">ville </th>
+                                        <th class="text-left">domaine </th>
+                                        <th class="text-left">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for entity in association %}
+                                    <tr>
+                                        <td>
+                                            <div class="flag">
+                                                <img src="{{(asset('assets_dashboard/myimg/1.png'))}}">
+                                            </div>
+                                        </td>
+                                        <td>{{ entity.id }}</td>
+                                        <td class="text-left">{{ entity.username }}</td>
+                                        <td class="text-left">{{ entity.email }}</td>
+                                        <td class="text-left">53.23%</td>
+                                        <td class="text-left">53.23%</td>
+                                        <td class="text-left">53.23%</td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

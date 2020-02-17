@@ -1,0 +1,55 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block gestion_specialite %}
+    <div class="content">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">table_chart</i>
+                    </div>
+                    <h4 class="card-title">Spécialités <a href="{{ path('ajouterSpecialite') }}"><button type="button" class="btn btn-info btn-round" style="margin-left: 35px;">Ajouter Une Spécialité <i class="material-icons">keyboard_arrow_right</i></button></a></h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive table-sales">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-left">ID spécialité</th>
+                                        <th class="text-left">Libellé spécialité</th>
+                                        <th class="td-actions">Modifier </th>
+                                        <th class="td-actions">Supprimer </th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for spec in spec %}
+                                        <tr>
+                                        <td class="text-left">{{ spec.id }}</td>
+                                        <td class="text-left">{{ spec.nomSpecialite }}</td>
+                                            <td class="td-actions">
+                                                <a href="{{path('modifierSpec',{'id':spec.id})}}"><button type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="" style="width: 60px;">
+                                                        <i class="material-icons">edit</i>
+                                                    </button></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{path('supprimerSpec',{'id':spec.id})}}"><button type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="" style="width: 60px;">
+                                                        <i class="material-icons">close</i>
+                                                    </button></a>
+                                            </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
