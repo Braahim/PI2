@@ -1,6 +1,8 @@
 <?php
 
 namespace RefugeeBundle\Repository;
+use RefugeeBundle\Entity\camp;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 /**
  * campRepository
@@ -10,4 +12,23 @@ namespace RefugeeBundle\Repository;
  */
 class campRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * campRepository constructor.
+     */
+  /*  public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, camp::class);
+
+    }
+
+    public function updateCapacity($id){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'Update camp set capacity = capacity - 1
+                  where id = :id
+                  '
+        )->setParameter('id', $id);
+
+
+    }*/
 }

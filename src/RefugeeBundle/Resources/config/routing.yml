@@ -1,6 +1,6 @@
 refugee_homepage:
     path:     /
-    defaults: { _controller: RefugeeBundle:refugee:index }
+    defaults: { _controller: RefugeeBundle:refugie:index }
 
 refugee_ajoutRefugie:
     path:     /ajoutR
@@ -31,5 +31,9 @@ refugee_afficherCamp:
 refugee_suprimerC:
     path:     /supprimerC/{id}
     defaults: { _controller: RefugeeBundle:camp:supprimerC}
+refugee_modifierC:
+    path:     /modifierC/{id}
+    defaults: { _controller: RefugeeBundle:camp:modifierC}
+
 
 

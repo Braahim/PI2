@@ -44,6 +44,14 @@ class refugie
     private $nationality;
 
     /**
+     * refugie constructor.
+     */
+    public function __construct()
+    {
+        $this->setCurrentDate(new \DateTime("now"));
+    }
+
+    /**
      * @return mixed
      */
     public function getCamp()
@@ -61,7 +69,7 @@ class refugie
 
     /**
      * @ORM\ManyToOne(targetEntity="camp")
-     * @ORM\JoinColumn(name="camp", referencedColumnName="id")
+     * @ORM\JoinColumn(name="camp", referencedColumnName="id",onDelete="CASCADE")
      */
     private $camp;
 
@@ -112,6 +120,29 @@ class refugie
     {
         return $this->id;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCurrentDate()
+    {
+        return $this->currentDate;
+    }
+
+    /**
+     * @param \DateTime $currentDate
+     */
+    public function setCurrentDate($currentDate)
+    {
+        $this->currentDate = $currentDate;
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="addDate", type="datetime")
+     */
+    private $currentDate;
 
     /**
      * Set nom
@@ -198,6 +229,7 @@ class refugie
 
         return $this;
     }
+
 
     /**
      * Get birthD

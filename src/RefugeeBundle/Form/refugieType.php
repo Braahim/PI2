@@ -3,6 +3,7 @@
 namespace RefugeeBundle\Form;
 
 //use Doctrine\DBAL\Types\DateType;
+//use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -11,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class refugieType extends AbstractType
 {
@@ -31,8 +33,13 @@ class refugieType extends AbstractType
                 'attr' => [ 'class' => 'selectpicker ', 'data-style' => 'select-with-transition']
             ))
             ->add('birthD', DateType::class, [
-                'attr' => [ 'class' => 'form-control datetimepicker']
-            ])
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker'],
+                'widget' => 'choice' ,
+                'input' => 'datetime' ,
+                'format' => 'dd/MM/yyyy' ,
+
+                ])
 
             ->add('birthLoc')
 
@@ -47,6 +54,12 @@ class refugieType extends AbstractType
 
             ->add('img',FileType::class, array(
                 'data_class' => null ,
+                // unmapped means that this field is not associated to any entity property
+                //'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
                 'attr' => ['class' => 'btn btn-primary ml-auto mr-auto'],
 
             ))

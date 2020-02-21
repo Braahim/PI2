@@ -292,12 +292,21 @@
                                                 <tr>
                                                     <td>
                                                         <div class="img-container">
-                                                            <img src="{{ asset('asset/myimg/' ~r.img) }}" alt="...">
+                                                            <img src="{{ asset('uploads/images/' ~r.img) }}">
                                                         </div>
                                                     </td>
                                                     <td class="td-name">
-                                                        <a href="">{{ r.nom }} {{ r.prenom }}</a>
+                                                        <a href="{{ path('refugee_afficherDetaille',{'id':r.id}) }}" onmouseover="this.className='survol';" onmouseout="this.className='parti';">{{ r.nom }} {{ r.prenom }}</a>
                                                         <br><small>{{ r.nationality}}</small>
+                                                        <style>
+                                                            .survol    {    text-decoration: underline;
+
+                                                            }
+
+                                                            .parti {
+                                                                text-decoration: transparent;
+                                                            }
+                                                        </style>
                                                     </td>
                                                     <td>
                                                         {{ r.birthD | date('m/d/Y') }}   à   {{ r.birthLoc }}

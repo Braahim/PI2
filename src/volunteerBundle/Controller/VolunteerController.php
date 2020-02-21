@@ -5,11 +5,18 @@ namespace volunteerBundle\Controller;
 use FOS\UserBundle\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Date;
 use volunteerBundle\Entity\Member;
 use RefugeeBundle\Entity\refugie;
 use volunteerBundle\Form\MemberType;
+use RefugeeBundle\Form\refugieType;
 use volunteerBundle\volunteerBundle;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints\DateTime;
+use RefugeeBundle\Repository\campRepository;
+
+//use Dompdf\Dompdf;
+//use Dompdf\Options;
 
 class VolunteerController extends Controller
 {
@@ -100,6 +107,9 @@ class VolunteerController extends Controller
             );
             $refugie->setImg($fileName);
             $em = $this->getDoctrine()->getManager();
+            $this->getDoctrine()->getRepository(camp::class)
+                ->updateCapacity($refugie->getCamp());
+
             $em->persist($refugie);
             $em->flush();
             return $this->redirectToRoute("volunteer_association_profile");
@@ -135,6 +145,15 @@ class VolunteerController extends Controller
         }
         return $this->render("@volunteer/Association/modifierR.html.twig", array('form' => $form->createView()));
     }
+
+
+
+    /*public function afficherDetailleAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $refugee = $em->getRepository("RefugeeBundle:refugie")->find($id);
+        return $this->render("@volunteer/Association/ficheR.html.twig", array('refugee' => $refugee));
+    }*/
 
 
 }

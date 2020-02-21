@@ -8,6 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+//require_once 'Dompdf/autoload.inc.php';
 
 /**
  * Refugie controller.
@@ -63,12 +67,6 @@ class refugieController extends Controller
         return $this->render("@Refugee/Refugie/ajoutR.html.twig", array('form' => $form->createView()));
     }
 
-    public function afficherDetailleAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $refugee = $em->getRepository("RefugeeBundle:refugie")->find($id);
-        return $this->render("@Refugee/Refugie/ajoutR.html.twig", array('refugee' => $refugee));
-    }
 
     public function afficherRefugeeAction()
     {
@@ -105,6 +103,74 @@ class refugieController extends Controller
             return $this->redirectToRoute("refugee_afficherRefugee");
         }
     }
+
+    public function afficherDetailleAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $refugee = $em->getRepository("RefugeeBundle:refugie")->find($id);
+
+        $snappy = $this->get('knp_snappy.pdf');
+        $snappy->setOption('no-outline', true);
+        $snappy->setOption('page-size','LETTER');
+        $snappy->setOption('encoding', 'UTF-8');
+        $snappy->setOption('images' , true);
+
+        $html= $this->renderView("@volunteer/Association/ficheR.html.twig", array('refugee' => $refugee));
+
+        $filename = 'myFirstSnappyPDF';
+
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+
+
+
+    }
+
+
+   /* public function index($html)
+    {
+
+
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        //$pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Retrieve the HTML generated in our twig file
+
+
+        // Load HTML to Dompdf
+
+        $dompdf->loadHtml($html);
+
+
+
+
+
+
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+       // $dompdf->output();
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (inline view)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => false
+        ]);
+    }*/
 
 
 

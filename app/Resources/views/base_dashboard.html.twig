@@ -95,6 +95,14 @@
                             <p> Gestion de stock</p>
                         </a>
                     </li>
+                    <li class="nav-item  ">
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-link" href="{{ path('refugee_afficherCamp')}}">
+                            {% endif %}
+                            <i class="material-icons">table_chart</i>
+                            <p> Gestion Camp </p>
+                        </a>
+                    </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="#">
                             <i class="material-icons">date_range</i>
@@ -179,6 +187,8 @@
             <!-- End Navbar -->
             {% block gestion_association %}
             {% endblock %}
+            {% block ajoutCamp %}
+            {% endblock %}
     </div>
 {% endblock %}
 
@@ -190,13 +200,15 @@
 {% endblock %}
 
 
+
 {% block footer %}
 
 {% endblock %}
 {% block javascripts %}
     <!--   Core JS Files   -->
-    <script src="{{ asset('assets_dashboard/js/core/jquery.min.js') }}" type="text/javascript"></script>
+  <!--  <script src="{{ asset('assets_dashboard/js/core/jquery.min.js') }}" type="text/javascript"></script> -->
     <script src="{{ asset('assets_dashboard/js/core/popper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets_dashboard/js/core/material-kit.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets_dashboard/js/core/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
     <!-- Plugin for the Perfect Scrollbar -->
     <script src="{{ asset('assets_dashboard/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>

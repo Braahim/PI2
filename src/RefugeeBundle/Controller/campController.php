@@ -4,10 +4,13 @@ namespace RefugeeBundle\Controller;
 
 use RefugeeBundle\Entity\camp;
 use RefugeeBundle\Form\campType;
+use RefugeeBundle\Repository\campRepository;
+use RefugeeBundle\Form\campUpdateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Process\Process;
 
 
 class campController extends Controller
@@ -18,9 +21,6 @@ class campController extends Controller
         $form = $this->createForm(campType::class, $camp);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
-
-
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -41,19 +41,20 @@ class campController extends Controller
         return $this->render("@Refugee/Refugie/ajouterC.html.twig", array('camp' => $camp));
     }
 
-    public function  modifierCampAction($id,Request $request)
+    public function  modifierCAction($id,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $refugie = $em->getRepository("RefugeeBundle:refugie")->find($id);
-        $form = $this->createForm(refugieType::class, $refugie);
+        $camp = $em->getRepository("RefugeeBundle:camp")->find($id);
+        $form = $this->createForm(campType::class, $camp);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $em->persist($refugie);
+            $em->persist($camp);
             $em->flush();
-            return $this->redirectToRoute("refugee_afficherRefugee");
+            return $this->redirectToRoute("refugee_ajoutCamp");
         }
-        return $this->render("@Refugee/Refugie/modifierR.html.twig", array('form' => $form->createView()));
+        return $this->render("@Refugee/Refugie/ajoutC1.html.twig", array('update' => $form->createView()));
     }
 
     public function supprimerCAction($id)
