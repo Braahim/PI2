@@ -3,6 +3,7 @@
 namespace RefugeeBundle\Controller;
 
 use RefugeeBundle\Entity\camp;
+use RefugeeBundle\Entity\refugie;
 use RefugeeBundle\Form\campType;
 use RefugeeBundle\Repository\campRepository;
 use RefugeeBundle\Form\campUpdateType;
@@ -18,6 +19,7 @@ class campController extends Controller
     public function ajoutCampAction(Request $request)
     {
         $camp = new camp();
+        $refugie = new refugie();
         $form = $this->createForm(campType::class, $camp);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
@@ -27,11 +29,14 @@ class campController extends Controller
             $em->persist($camp);
             $em->flush();
             return $this->redirectToRoute("refugee_ajoutCamp");
+
         }
         $camp = $em->getRepository("RefugeeBundle:camp")->findAll();
+        $refugie = $em->getRepository("RefugeeBundle:refugie")->findAll();
 
 
-        return $this->render("@Refugee/Refugie/ajoutC.html.twig", array('form' => $form->createView(), 'camp' => $camp));
+
+        return $this->render("@Refugee/Refugie/ajoutC.html.twig", array('form' => $form->createView(), 'camp' => $camp, 'refugee' => $refugie));
     }
 
     public function afficherCampAction()

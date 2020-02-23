@@ -10,4 +10,16 @@ namespace RefugeeBundle\Repository;
  */
 class refugieRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function updateCapacityMinus($camp){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            '
+        update RefugeeBundle:camp c set c.capacity = (c.capacity-1) 
+        where c.id = :camp'
+
+        )->setParameter('camp', $camp)->getResult();
+        return $query;
+
+
+    }
 }

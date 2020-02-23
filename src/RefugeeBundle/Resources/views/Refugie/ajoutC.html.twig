@@ -5,6 +5,8 @@
 
     <div class="container">
       <div class="row">
+
+
         <div class="col-md-4">
 
             <div class="card" >
@@ -22,6 +24,12 @@
                                             <a class="nav-link" href="#profile" data-toggle="tab">
                                                 <i class="material-icons">face</i>
                                                 Ajouter Camp
+                                                <div class="ripple-container"></div></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#stat" data-toggle="tab">
+                                                <i class="material-icons">face</i>
+                                                Stats
                                                 <div class="ripple-container"></div></a>
                                         </li>
 
@@ -86,8 +94,13 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="settings">
-                                    <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                                <div class="tab-pane" id="stat">
+                                    <p>
+                                    <div id="" >
+
+                                    </div>
+                                    </p>
+
                                 </div>
                             </div>
                         </div>
@@ -137,7 +150,7 @@
 
 
 
-                                        <a class="btn btn-primary {{ c.id }}" data-toggle="modal" data-target="#dataModal" href="#">
+                                        <a class="btn btn-primary {{ c.id }}" data-toggle="modal" data-target="#dataModal{{ c.id }}" href="#" id="{{ c.id }}">
                                             <i class="material-icons">edit</i>
                                         </a>
 
@@ -145,39 +158,16 @@
 
                                 <!-- dataModal -->
 
-                                <div id="dataModal" class="modal fade">
+                                <div id="dataModal{{ c.id }}" class="modal fade">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="modal-title"></h4>
+                                                <h4 class="modal-title" id="modal-title{{ c.id }}"></h4>
                                             </div>
-                                            <div class="modal-body" id="modal_detail">
-                                                <script src="{{ asset('assets_dashboard/js/core/jquery.min.js') }}" type="text/javascript"></script>
-                                                <script src="{{ asset('assets_dashboard/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
-                                                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-                                                <script type="text/javascript">
-                                                    $(document).ready(function () {
-                                                        $('.{{ c.id }}').click(function () {
-                                                            $('#modal-title').html("Modifier profile");
-
-                                                            var url = '{{ path('refugee_modifierC' , {'id':c.id}) }}';
-
-                                                            $.ajax({
-                                                                type: 'get',
-                                                                url: url,
-                                                                success: function (data) {
-                                                                    $('#modal_detail').html(data);
-                                                                    $('#dataModal').modal("show");
-                                                                }
-                                                            });
-
-                                                        });
+                                            <div class="modal-body" id="modal_detail{{ c.id }}">
 
 
-                                                    });
 
-                                                </script>
                                             </div>
 
                                         </div>
@@ -206,17 +196,126 @@
             </div>
 
         </div>
-      </div>
+            <div class="col-md-12">
+                <div class="card" >
 
+                    <div class="card-body color">
 
+                        <h2 class="card-title text-center">Capacité</h2>
+                        <div class="row">
+        {% for c in camp %}
+          {% set n = 0 %}
+            {% for r in refugee %}
+                {% if r.camp.id == c.id %}
+                {% set n = n+1 %}
+                {% endif %}
+            {% endfor %}
 
+          <div class="col-md-4">
+            <div class="card">
+                     <div id="chartContainer{{ c.id }}" style="height: 300px; width: 100%;"></div>
+            </div>
+          </div>
 
+          {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
     </div>
 
 
-    {%  block javascripts %}
 
-    {% endblock %}
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="{{ asset('assets_dashboard/js/core/jquery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets_dashboard/js/core/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+
+        window.onload = function () {
+            {% for c in camp %}
+
+            {% set n = 0 %}
+            {% for r in refugee %}
+            {% if c.id == r.camp.id %}
+            {% set n = n+1 %}
+            {% endif %}
+            {% endfor %}
+
+            var chart = new CanvasJS.Chart("chartContainer{{ c.id }}", {
+                exportEnabled: true,
+                animationEnabled: true,
+                title:{
+                    text: "{{ c.libelle }}",
+                    sub: "Capacité : {{ c.capacity + n }}"
+                },
+                legend:{
+                    cursor: "pointer",
+                    itemclick: explodePie
+                },
+                data: [{
+                    type: "pie",
+                    showInLegend: true,
+                    toolTipContent: "{name}: <strong>{y}</strong>",
+                    indexLabel: "{name} - {y}",
+                    dataPoints: [
+                        { y: {{ n }}, name: "Réfugiés", exploded: true },
+                        { y: {{ c.capacity }}, name: "Places Disponibles" },
+
+                    ]
+                }]
+            });
+            chart.render();
+
+            {% endfor %}
+        }
+
+        function explodePie (e) {
+            if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+            } else {
+                e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+            }
+            e.chart.render();
+
+        }
+
+        {% for c in camp %}
+        $(document).ready(function () {
+            $('#{{ c.id }}').click(function () {
+                $('#modal-title{{ c.id }}').html("Modifier profile");
+
+                var url = '{{ path('refugee_modifierC',{'id':c.id}) }}';
+
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    success: function (data) {
+                        $('#modal_detail{{ c.id }}').html(data);
+                        $('#dataModal{{ c.id }}').modal("show");
+                    }
+                });
+
+            });
+
+
+        });
+        {% endfor %}
+
+
+    </script>
+
+
+
+
+
+
+
+
+
 
 
 

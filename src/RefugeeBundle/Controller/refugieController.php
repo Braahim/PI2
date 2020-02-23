@@ -4,12 +4,14 @@ namespace RefugeeBundle\Controller;
 
 use RefugeeBundle\Entity\refugie;
 use RefugeeBundle\Form\refugieType;
+use RefugeeBundle\RefugeeBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\HttpFoundation\Response;
+use RefugeeBundle\Repository\campRepository;
 
 //require_once 'Dompdf/autoload.inc.php';
 
@@ -49,6 +51,7 @@ class refugieController extends Controller
         return $this->render('refugie/show.html.twig', array(
             'refugie' => $refugie,
         ));
+
     }
 
     public function ajoutRefugieAction(Request $request)
@@ -58,13 +61,25 @@ class refugieController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var UploadedFile $file
+             *
+             */
+            $file=$refugie->getImg();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$fileName
+            );
+            $refugie->setImg($fileName);
             $em = $this->getDoctrine()->getManager();
+            $this->getDoctrine()->getRepository("RefugeeBundle:camp")->updateCapacityMinus($refugie->getCamp());
+
             $em->persist($refugie);
             $em->flush();
-            return $this->redirectToRoute("refugee_afficherRefugee");
+            return $this->redirectToRoute("volunteer_association_profile");
         }
 
-        return $this->render("@Refugee/Refugie/ajoutR.html.twig", array('form' => $form->createView()));
+        return $this->render("@volunteer/Association/ajoutR.html.twig", array('form' => $form->createView()));
     }
 
 
@@ -98,6 +113,7 @@ class refugieController extends Controller
         if ($refugie == null) return -1;
         else
         {
+            $this->getDoctrine()->getRepository("RefugeeBundle:camp")->updateCapacityPlus($refugie->getCamp());
             $em->remove($refugie);
             $em->flush();
             return $this->redirectToRoute("refugee_afficherRefugee");

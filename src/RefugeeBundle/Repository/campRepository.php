@@ -19,16 +19,30 @@ class campRepository extends \Doctrine\ORM\EntityRepository
     {
         parent::__construct($registry, camp::class);
 
-    }
+    }*/
 
-    public function updateCapacity($id){
+    public function updateCapacityMinus($camp){
         $em = $this->getEntityManager();
         $query = $em->createQuery(
-            'Update camp set capacity = capacity - 1
-                  where id = :id
-                  '
-        )->setParameter('id', $id);
+            '
+        update RefugeeBundle:camp c set c.capacity = (c.capacity-1) 
+        where c.id = :camp'
+
+        )->setParameter('camp', $camp)->getResult();
+        return $query;
 
 
-    }*/
+    }
+    public function updateCapacityPlus($camp){
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            '
+        update RefugeeBundle:camp c set c.capacity = (c.capacity+1) 
+        where c.id = :camp'
+
+        )->setParameter('camp', $camp)->getResult();
+        return $query;
+
+
+    }
 }
