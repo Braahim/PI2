@@ -1,0 +1,6 @@
+afficherStock:
+   path:     /AfficherStock1
+   defaults: { _controller: StockBundle:Stock:AfficherStock}
+rechercheClub:
+   path:     /rechercheClub
+   defaults: { _controller: StockBundle:Stock:rechercheLibelle }

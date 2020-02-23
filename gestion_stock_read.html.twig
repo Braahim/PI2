@@ -1,0 +1,180 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block gestion_stock %}
+
+
+        <div class="card-body">
+        <div class="card card-blog" style="margin-bottom: 25px; width: 1000px; height: 700px;  margin-left: 30px;">
+        <center><div class="col-lg-6 col-md-8">
+
+
+
+
+
+
+    <a href="{{ path('afficherpfd') }}" class="btn btn-primary btn-round">imprimer </a>
+
+
+
+            <script src="{{ asset('js2/jquery.min.js') }}"></script>
+
+            <form class="navbar-form">
+                      <th> <input type="text" id="search" placeholder="Rechercher  ..."></th>
+        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+        </button>
+            </form>
+        </h3>
+
+        <center> <ul class="nav nav-pills nav-pills-rose">
+                <li ><a class="nav-link" href="#pill1" data-toggle="tab">Stock</a></li>
+                <li ><a class="nav-link active show" href="#pill2" data-toggle="tab">Don Nature</a></li>
+
+            </ul></center>
+
+    <div class="ripple-container"></div>
+        <div class="tab-content tab-space">
+            <div class="tab-pane" id="pill1" style="width: 320px;">
+
+                {% for message in app.flashes('info') %}
+                    <div class="alert alert-success"> {{ message }} </div>
+                {% endfor %}
+                <table class="table" id="tableacc">
+                    <thead >
+                    <tr class="text-center" bgcolor="#e6e6fa" >
+                        <th class="title" class="text-center"  >id</th>
+                        <th class="title"  class="text-right" >type de Stock</th>
+                        <th class="title" class="text-center">Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody  >
+                    {% for stock in stocks %}
+                        <tr class="text-center">
+                            <td class="text-center"  >{{ stock.id }}</td>
+                            <td >{{ stock.type }}</td>
+
+                            <td class="td-actions text-right" >
+                                <a href="{{path('modifierStock',{'id':stock.id})}}" class="btn btn-blue btn-round">
+                                    modify
+                                    <div class="ripple-container"></div></a>
+                                <a  href="{{path('deleteStock',{'id':stock.id})}}" class="btn btn-blue btn-round"   >
+                                    delete
+                                    <div class="ripple-container"></div></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="modal-fgitooter justify-content-center">
+                    <a href="{{ path('ajouterStock') }}" class="btn btn-primary btn-round">Ajouter </a>
+                </div>
+            </div>
+            <div class="tab-pane active show" id="pill2">
+                {% for message in app.flashes('infoo') %}
+                    <div class=" alert alert-success"> {{ message }} </div>
+                {% endfor %}
+                <table class="table"  class="table-responsive" id="tableac">
+                    <thead >
+                    <tr class="text-center" bgcolor="#e6e6fa" >
+                        <th class="title"  >reference</th>
+                        <th class="title" >libelle</th>
+                        <th class="title">quantité</th>
+                        <th class="title" class="text-center" class="text-right">date d'entrée</th>
+                        <th class="title" class="text-center" class="text-right">type de stock</th>
+                        <th class="text-right"></th>
+                    </tr>
+                    </thead>
+                    <tbody  >
+                    {% for don in Dons %}
+                        <tr class="text-center">
+                            <td class="text-center"  >{{ don.reference}}</td>
+                            <td >{{ don.libelle  | upper}}</td>
+                            <td>{{ don.quantite}}</td>
+                            <td>{{ don.date|date("m-d-y")}}</td>
+                            <td >{{ don.stock.type}}</td>
+                            <td class="td-actions text-right" >
+                                <a href="{{path('modifierDon',{'reference':don.reference})}}" class="btn btn-blue btn-round">
+                                    modify
+                                    <div class="ripple-container"></div></a>
+
+                                <a  href="{{path('deleteDon',{'reference':don.reference})}}" class="btn btn-blue btn-round"   >
+transferer                                    <div class="ripple-container"></div></a>
+                            </td>
+                        </tr>
+
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="modal-footer justify-content-center">
+                    <a href="{{ path('AjouterDon') }}" class="btn btn-primary btn-round">Ajouter </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableacc tbody tr').each(function(){
+                    var found = 'false';
+                    $(this).each(function(){
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                        {
+                            found = 'true';
+                        }
+                    });
+                    if(found == 'true')
+                    {
+                        $(this).show();
+
+                    }
+                    else
+                    {
+                        $(this).hide();
+
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

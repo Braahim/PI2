@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block banner %}
+
+<div class="new-style page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}) "></div>
+
+<div class="card-body">
+
+    <div class="card card-blog" style="margin-bottom: 25px; width: 1250px; height: 2000px;  margin-left: 45px;">
+        <div style="margin-bottom: 1px; width: 10px;   margin-left: 500px;">
+        {{ form_start(form) }}
+
+        {{ form_end(form) }}
+        </div>
+        <center><div class="col-lg-6 col-md-8">
+
+
+                <h3><small>LES STOCKS </small></h3>
+                <center> <ul class="nav nav-pills nav-pills-rose">
+                    </ul></center>
+                <div class="tab-content tab-space">
+                    <div class="tab-pane active show" >
+                        <table class="table"  class="table-responsive">
+                            <thead >
+                            <tr class="text-center" bgcolor="#e6e6fa" >
+                                <th class="title" >Libellé</th>
+                                <th class="title" class="text-center" class="text-right">Date d'entrée</th>
+                                <th class="title" class="text-center" class="text-right">Type de stock</th>
+                                <th class="title">On/off Stocks</th>
+
+                            </tr>
+                            </thead>
+                            <tbody  >
+                            {% for don in Dons %}
+                                <tr class="text-center">
+                                    <td >{{ don.libelle  | upper}}</td>
+
+
+                                    <td>{{ don.date|date("m-d-y")}}</td>
+                                    <td >{{ don.stock.type}}</td>
+                                    <td >  {% if don.quantite > 10 %}
+                                          <h4 class=" alert alert-success"> {{   " ON STOCKS" }}</h4>
+
+                                              {% else %}
+                                           <h4 class=" alert alert-danger">{{ "OFF STOCKS" }}</h4>
+
+                                        {% endif %}
+                                    </td>
+                                </tr>
+
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </center>
+    </div>
+
+
+
+
+    </div>
+    {% endblock %}

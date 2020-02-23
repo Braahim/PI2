@@ -1,0 +1,74 @@
+
+
+<center><div class="col-lg-6 col-md-8">
+            <h1 aligne ="center" ><small> les stocks </small> </h1></div>
+
+    <div class="ripple-container"></div>
+    <div class="tab-content tab-space">
+        <div class="tab-pane" id="pill1" style="margin-bottom: 25px; width: 1000px; height: 700px;  margin-left: 30px;">
+             <center><table class="table" id="tableacc"  aligne ="center"   width="500">
+                <thead >
+                <tr class="text-center" bgcolor="#e6e6fa" aligne ="center"  style="width: 600px;">
+                    <th class="title" class="text-center"  bgcolor="#add8e6"  >id</th>
+                    <th class="title"  class="text-right"  bgcolor="#add8e6">type de Stock</th>
+
+                </tr>
+                </thead>
+                <tbody  >
+                {% for stock in stocks %}
+                    <tr class="text-center" aligne ="center" >
+                        <td class="text-center"  bgcolor="#fff0f5" >{{ stock.id }}</td>
+                        <td  bgcolor="#fff0f5">{{ stock.type }}</td>
+
+
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table></center>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+<h1>____________________________________________________________________________________________________________________________________________________</h1>
+            <center><div class="td-name">
+            <h3 aligne ="center" style="width: 600px;" ><small>  stocks de  Don natures  </small> </h3>
+
+                </div>
+            <table class="table"  class="table-responsive" id="tableac" width="500" >
+                <thead >
+                <tr class="text-center"  bgcolor="#add8e6"  >
+                    <th class="title"  >reference</th>
+                    <th class="title" >libelle</th>
+                    <th class="title">quantité</th>
+                    <th class="title" class="text-center" class="text-right">date d'entrée</th>
+                    <th class="title" class="text-center" class="text-right">type de stock</th>
+                  </th>
+                </tr>
+                </thead>
+                <tbody  >
+                {% for don in Dons %}
+                    <tr class="text-center" bgcolor="#ffe4c4">
+                        <td class="text-center"  >{{ don.reference}}</td>
+                        <td >{{ don.libelle  | upper}}</td>
+                        <td>{{ don.quantite}}</td>
+                        <td>{{ don.date|date("m-d-y")}}</td>
+                        <td >{{ don.stock.type}}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            </center>
+        </div>
+    </div>
+</center>
+<a class="navbar-brand" >
+</a>
+<div style="width:600px; margin-left: 600px;">
+    <img src="assets/88.jpg"  height="100px">
+</div>
+<div class="ripple-container"  style= "width:700px; margin-left: 600px; margin-top: 1px;"> Refugees.org</div>

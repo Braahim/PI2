@@ -1,0 +1,84 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block ajout_demande %}
+    <br><br><br><br>
+    <script src="{{ asset('js2/jquery.min.js') }}"></script>
+
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="width: 600px;height: 350px; margin-left: 240px;margin-top: 100px;">
+
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 100px;">libelle</label>
+
+                                {{ form_widget(form.libelle, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                            </div>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">quantite</label>
+                                <span  id="span2">le quantite  est positive</span>
+
+                                {{ form_widget(form.quantite, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                            </div>
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <span  id="span1">date inferieur date sys</span>
+                                <label class="bmd-label-floating" style="width: 120px;">Date d'entrée</label><br>
+
+                            </div>
+                            {{ form_widget(form.date, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                            {{ form_errors(form.date) }}
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Stock :  </label><br>
+                            </div>
+                            {{ form_widget(form.Stock, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+            $("#span2").hide();
+            $("#span1").hide();
+
+
+            $('#stockbundle_don_quantite').keyup(function () {
+
+                var quantite = $('#stockbundle_don_quantite').val();
+                var test=/^[1-9]+$/;
+                if (test.test(quantite)) {
+
+                    $('#span2').hide();
+
+                    $('#ajouter').prop('disabled', false);
+
+                } else {
+                    $('#span2').show();
+
+
+
+                    $('#ajouter').prop('disabled', true);
+                }
+            });
+
+
+
+        })
+    </script>
+
+
+
+{% endblock %}

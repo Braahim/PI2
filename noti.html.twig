@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title> {% block title %} welcom!{% endblock %}</title>
+        {% block stylesheets %} {% endblock %}
+        <link rel ="icon" type ="imageh/x-icone" href ="{{ asset('favicon.ico')}}"/>
+        </head>
+<body>
+{{render (controller ('StockBundle:Stock:AfficherStock')) }}
+{%block body %} {% endblock %}
+{% block javascript %} {% endblock %}
+{{ notification_assets()}}
+<script>
+    function onNotificationPushed  (data){
+        console.log('data'.data):
+    }
+</script>
+</body>
+</html>

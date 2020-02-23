@@ -1,0 +1,35 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block ajout_demande %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="width: 500px;height: 180px; margin-left: 240px;margin-top: 90px;">
+
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 80px;">Type Stock</label>
+
+                                {{ form_widget(form.type, {'attr': { 'class' : 'form-control' , 'style': 'width:450px;'}}) }}
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

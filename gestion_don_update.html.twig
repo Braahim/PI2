@@ -1,0 +1,50 @@
+{% extends 'base_dashboard.html.twig' %}
+
+{% block ajout_demande %}
+    <br><br><br><br>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card" style="margin-bottom: 25px; width: 1000px; height: 700px;  margin-left: 30px;"">
+
+                <div class="card-body" >
+                    {{ form_start(form) }}
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">libelle</label> <br>
+                            </div>
+                            {{ form_widget(form.libelle, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">quantite</label> <br>
+                            </div>
+                            {{ form_widget(form.quantite, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Date d'entrée</label> <br>
+                            </div>
+                            {{ form_widget(form.date, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+                            {{ form_errors(form.date) }}
+
+                            <div class="form-group label-floating is-empty bmd-form-group">
+                                <label class="bmd-label-floating" style="width: 120px;">Stock</label><br>
+                            </div>
+                            {{ form_widget(form.Stock, {'attr': { 'class' : 'form-control' , 'style': 'width:550px;'}}) }}
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-footer justify-content-between">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
