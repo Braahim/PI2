@@ -107,8 +107,7 @@ class VolunteerController extends Controller
             );
             $refugie->setImg($fileName);
             $em = $this->getDoctrine()->getManager();
-            $this->getDoctrine()->getRepository(camp::class)
-                ->updateCapacity($refugie->getCamp());
+            $this->getDoctrine()->getRepository("RefugeeBundle:camp")->updateCapacityMinus($refugie->getCamp());
 
             $em->persist($refugie);
             $em->flush();
@@ -118,42 +117,6 @@ class VolunteerController extends Controller
         return $this->render("@volunteer/Association/ajoutR.html.twig", array('form' => $form->createView()));
     }
 
-    public function supprimerRefugieAction($id)
-    {
-
-        $em = $this->getDoctrine()->getManager();
-        $refugie = $em->getRepository("RefugeeBundle:refugie")->find($id);
-        if ($refugie == null) return -1;
-        else
-        {
-            $em->remove($refugie);
-            $em->flush();
-            return $this->redirectToRoute("volunteer_association_profile");
-        }
-    }
-    public function  modifierRefugieAction($id,Request $request)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $refugie = $em->getRepository("RefugeeBundle:refugie")->find($id);
-        $form = $this->createForm(refugieType::class, $refugie);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em->persist($refugie);
-            $em->flush();
-            return $this->redirectToRoute("volunteer_association_profile");
-        }
-        return $this->render("@volunteer/Association/modifierR.html.twig", array('form' => $form->createView()));
-    }
-
-
-
-    /*public function afficherDetailleAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $refugee = $em->getRepository("RefugeeBundle:refugie")->find($id);
-        return $this->render("@volunteer/Association/ficheR.html.twig", array('refugee' => $refugee));
-    }*/
 
 
 }

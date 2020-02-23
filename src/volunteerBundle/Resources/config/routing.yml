@@ -28,7 +28,7 @@ refugee_afficherRefugee:
 
 volunteer_ajoutRefugie:
     path:     /ajoutR
-    defaults: { _controller: volunteerBundle:Volunteer:ajoutRefugie }
+    defaults: { _controller: RefugeeBundle:refugie:ajoutRefugie }
 
 volunteer_supprimerRefugie:
         path:     /supprimerR/{id}
