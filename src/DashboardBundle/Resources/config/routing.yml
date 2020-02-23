@@ -53,3 +53,6 @@ ajouterMedecin:
 modifierMedecin:
   path:     /modifierMedecin/{id}
   defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:modifierMedecin }
+envoyerMedecin:
+  path:    /envoyerMedecin/{id}
+  defaults: { _controller: DashboardBundle:Dashboard_gestion_specialite:envoyerMedecin }

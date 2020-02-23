@@ -5,13 +5,20 @@ namespace DashboardBundle\Controller;
 use DonBundle\DonBundle;
 use DonBundle\Form\DemandeType;
 use SanteBundle\Entity\Medecin;
+use SanteBundle\Entity\Notification;
 use SanteBundle\Entity\Specialite;
 use SanteBundle\Form\MedecinType;
 use SanteBundle\Form\SpecialiteType;
 use SanteBundle\SanteBundle;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use DonBundle\Entity\Demande;
 use Symfony\Component\HttpFoundation\Request;
+
+
+
+use Yamilovs\Bundle\SmsBundle\Service\ProviderManager;
+use Yamilovs\Bundle\SmsBundle\Sms\Sms;
 
 class Dashboard_gestion_specialiteController extends Controller
 {
@@ -97,6 +104,8 @@ class Dashboard_gestion_specialiteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($medecin);
             $em->flush();
+
+
             return $this->redirectToRoute('dashboard_gestion_medecin_page');
         }
         return $this->render('@Dashboard/Gestion_medecin/gestion_medecin_add.html.twig',array("form"=>$form->createView()));
@@ -118,7 +127,30 @@ class Dashboard_gestion_specialiteController extends Controller
 
         }
         return $this->render('@Dashboard/Gestion_medecin/gestion_medecin_update.html.twig',array('form'=>$Form->createView()));
+
+
+
     }
+
+    public function envoyerMedecinAction($id)
+    {   $em=$this->getDoctrine()->getManager();
+        $medecin=$em->getRepository('SanteBundle:Medecin')->find($id);
+$mail=$medecin->getEmail();
+
+
+        $transport= (new \Swift_SmtpTransport('smtp.gmail.com','587','TLS'))
+            ->setUsername('mahmoud.benayed@esprit.tn')
+            ->setPassword('193JMT2117');
+        $mailer= new \Swift_Mailer($transport);
+
+        $message=(new Swift_Message('Confirmation d inscription'))
+            ->setFrom(['mahmoud.benayed@esprit.tn'])
+            ->setTo([$mail => 'ADMINISTRATEUR'])
+            ->setBody('Votre enregistrement est effectué avec succés Bienvenue');
+        $result= $mailer->send($message);
+        return $this->redirectToRoute('dashboard_gestion_medecin_page');
+    }
+
 
 
 

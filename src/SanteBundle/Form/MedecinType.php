@@ -15,7 +15,7 @@ class MedecinType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nCIN')->add('nonMedecin')->add('prenomMedecin')->add('telephone')
+        $builder->add('nCIN')->add('nonMedecin')->add('prenomMedecin')->add('telephone')->add('email')
             ->add('specialite', EntityType::class, array('class'=>'SanteBundle:Specialite','choice_label'=>'nomSpecialite','multiple'=>false))
             ->add('Ajouter',SubmitType::class,[
                 'attr'=>['class'=> 'btn btn-primary pull-right','style'=> 'margin-left: 200px; font-size: 16px; width: 140px;margin-bottom:180px;background-color:#5ad25f;']

@@ -43,9 +43,9 @@ class Medecin
     private $prenomMedecin;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="telephone", type="integer")
+     * @ORM\Column(name="telephone", type="string")
      */
     private $telephone;
 
@@ -161,7 +161,7 @@ class Medecin
     /**
      * Set telephone
      *
-     * @param integer $telephone
+     * @param string $telephone
      *
      * @return Medecin
      */
@@ -175,11 +175,40 @@ class Medecin
     /**
      * Get telephone
      *
-     * @return int
+     * @return string
      */
     public function getTelephone()
     {
         return $this->telephone;
     }
+
+    /**
+     * Get mail
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
 }
+
 

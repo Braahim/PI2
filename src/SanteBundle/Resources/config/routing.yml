@@ -1,3 +1,6 @@
 sante_homepage:
     path:     /sante
     defaults: { _controller: SanteBundle:Default:index }
+sante_homepagee:
+    path:     /aff
+    defaults: { _controller: SanteBundle:medecin:afficherMedecinn }

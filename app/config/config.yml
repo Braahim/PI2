@@ -70,6 +70,10 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+    stream_options:
+        ssl:
+            allow_self_signed: true
+            verify_peer: false
 
 sensio_framework_extra:
    router:
@@ -84,3 +88,18 @@ fos_user:
     from_email:
         address: "ahmedouertani1@esprit.tn"
         sender_name: "ahmed"
+# config/yamilovs_sms.yaml
+yamilovs_sms:
+    providers:
+        sms_ru_provider_doc:
+            sms_ru:
+                api_id: 'D577301F-3777-F5EC-7559-9D8DE287B33B'
+                from: 'MahmoudBenAyed'
+                test: true
+
+# NotificationsBundle configuration
+notifications:
+    app_id:     950964
+    app_key:    b072cfeade21dba03667
+    app_secret: 6349af7ad53e8373fc5c
+    cluster:    eu

@@ -1,16 +1,30 @@
-{% extends 'base_dashboard.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block gestion_medecin %}
+{% block banner %}
+
+    <!doctype html>
+    <html lang="en">
+
+<body>
+<div class="new-style page-header header-filter" data-parallax="true" style="background-image: url( {{ asset ('assets/myimg/4.jpg')}}) ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="brand text-center">
+                    <h3 class="title text-center">Make a diffrence </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="brand text-center">
+    <h3 class="title text-center">tables medecins</h3>
+</div>
     <div class="content">
         <div class="col-md-12">
             <div class="card ">
-                <div class="card-header card-header-success card-header-icon">
-                    <div class="card-icon">
-                        <i class="material-icons">table_chart</i>
-                    </div>
-                    <h4 class="card-title">Medecin <a href="{{ path('ajouterMedecin') }}"><button type="button" class="btn btn-info btn-round" style="margin-left: 35px;">Ajouter Un Medecin <i class="material-icons">keyboard_arrow_right</i></button></a></h4>
 
-                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
@@ -18,14 +32,12 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">ID</th>
                                         <th class="text-center">N°CIN</th>
                                         <th class="text-center">Nom Medecin</th>
                                         <th class="text-center">Prénom</th>
                                         <th class="text-center">Telephone</th>
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Spécialité</th>
-                                        <th class="text-center">Actions</th>
 
 
                                     </tr>
@@ -33,7 +45,6 @@
                                     <tbody>
                                     {% for medecin in medecin %}
                                         <tr>
-                                            <td class="text-center">{{medecin.id}}</td>
                                             <td class="text-center" >{{medecin.nCIN}}</td>
                                             <td class="text-center">{{medecin.nonMedecin}}</td>
                                             <td class="text-center">{{medecin.prenomMedecin}}</td>
@@ -41,24 +52,7 @@
                                             <td class="text-center">{{medecin.email}}</td>
                                             <td class="text-center">{{medecin.Specialite.nomSpecialite}}</td>
 
-                                            <td class="td-actions text-center">
-                                                <a  href="{{path('supprimerMedecin',{'id':medecin.id})}}" class="btn btn-blue btn-round"   >
-                                                    Supprimer
-                                                    <div class="ripple-container"></div></a>
-                                                <a  href="{{path('modifierMedecin',{'id':medecin.id})}}" class="btn btn-blue btn-round"   >
-                                                   modifier
-                                                    <div class="ripple-container"></div></a>
-                                                <a  href="{{path('envoyerMedecin',{'id':medecin.id})}}" class="btn btn-blue btn-round"   >
-                                                    Envoyer
-                                                    <div class="ripple-container"></div></a>
 
-
-
-
-
-
-
-                                        </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>

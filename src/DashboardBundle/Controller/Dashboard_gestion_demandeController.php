@@ -60,7 +60,7 @@ class Dashboard_gestion_demandeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($demand);
             $em->flush();
-            return $this->redirectToRoute('dashboard_gestion_demande_page');
+            return $this->redirectToRoute('sms_ru');
         }
         return $this->render('@Dashboard/Gestion_demande/gestion_demande_add.html.twig',array("form"=>$form->createView()));
     }

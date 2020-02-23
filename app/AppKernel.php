@@ -8,7 +8,7 @@ class AppKernel extends Kernel
 {
     public function registerBundles()
     {
-        $bundles = [
+        $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -23,7 +23,10 @@ class AppKernel extends Kernel
             new DashboardBundle\DashboardBundle(),
             new DonBundle\DonBundle(),
             new SanteBundle\SanteBundle(),
-        ];
+            new \Yamilovs\Bundle\SmsBundle\SmsBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
+            new SBC\NotificationsBundle\NotificationsBundle(),
+        );
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
