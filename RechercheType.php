@@ -18,7 +18,7 @@ class RechercheType extends AbstractType
         $builder
             ->add('libelle')
             ->add('Recherche',SubmitType::class,[
-                'attr'=>['class'=> 'btn btn-primary pull-right','style'=> 'margin-left: 100px; font-size: 16px; width: 140px;margin-bottom:150px;']
+                'attr'=>['class'=> 'btn btn-primary pull-right','style'=> ' margin-left: 2000px;  font-size: 16px; width: 200px;margin-bottom:1000px;']
             ]);
     }/**
      * {@inheritdoc}
